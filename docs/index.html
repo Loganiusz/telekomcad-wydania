@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TelekomCAD — dodatek do GstarCAD</title>
+<meta name="description" content="TelekomCAD — moduł telekomunikacji i geodezji do GstarCAD 2026: instalator, aktualizacje i licencje.">
+<style>
+  :root {
+    --bg: #f7f7f5; --card: #ffffff; --fg: #1d1f21; --muted: #5f6368; --line: #e3e3df;
+    --accent: #0b6e99; --accent-fg: #ffffff; --warn-bg: #fff6e0; --warn-fg: #6b4e00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16181a; --card: #1f2225; --fg: #e8e8e6; --muted: #a0a4a8; --line: #2e3236;
+            --accent: #4fb3e0; --accent-fg: #0b1a22; --warn-bg: #3a3018; --warn-fg: #f2d58a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  h2 { font-size: 18px; margin: 32px 0 8px; }
+  p, li { color: var(--fg); }
+  .lead { color: var(--muted); margin: 0 0 24px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px; }
+  .ver { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: baseline; }
+  .ver b { font-size: 22px; }
+  .muted { color: var(--muted); font-size: 14px; }
+  .btn { display: inline-block; margin-top: 16px; background: var(--accent); color: var(--accent-fg); padding: 10px 18px;
+         border-radius: 8px; text-decoration: none; font-weight: 600; }
+  .btn:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; }
+  pre.notes { white-space: pre-wrap; font: inherit; margin: 12px 0 0; padding: 12px; border-radius: 8px; background: var(--bg); border: 1px solid var(--line); }
+  .warn { background: var(--warn-bg); color: var(--warn-fg); border-radius: 8px; padding: 10px 12px; font-size: 14px; margin-top: 16px; }
+  code { font-family: ui-monospace, Consolas, monospace; font-size: 0.95em; background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+  ol, ul { padding-left: 22px; }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>TelekomCAD</h1>
+  <p class="lead">Dodatek do GstarCAD 2026: mapy (WMS/WMTS), arkusze, eksport obrazów, analiza przebiegu trasy po działkach i nawierzchniach.</p>
+
+  <section class="card" aria-labelledby="pobierz">
+    <h2 id="pobierz" style="margin-top:0">Najnowsza wersja</h2>
+    <div class="ver"><b id="wersja">…</b><span class="muted" id="data"></span></div>
+    <pre class="notes" id="zmiany" hidden></pre>
+    <a class="btn" id="instalator" href="https://github.com/Loganiusz/telekomcad-wydania/releases/latest">Pobierz instalator</a>
+    <div class="warn">Instalator nie jest podpisany certyfikatem, więc Windows może pokazać okno „System Windows ochronił komputer”.
+      Kliknij <b>Więcej informacji</b> → <b>Uruchom mimo to</b>.</div>
+  </section>
+
+  <h2>Instalacja</h2>
+  <ol>
+    <li>Zamknij GstarCAD (wcześniej uruchom go przynajmniej raz na tym koncie Windows).</li>
+    <li>Uruchom pobrany plik <code>TelekomCAD-Setup-….exe</code> — instalacja nie wymaga uprawnień administratora.</li>
+    <li>Uruchom GstarCAD — TelekomCAD załaduje się sam (zakładka na wstążce, pasek narzędzi, panel map).</li>
+  </ol>
+
+  <h2>Licencja</h2>
+  <ul>
+    <li>Przez pierwsze 30 dni program działa bez licencji.</li>
+    <li>Polecenie <code>TCADLICENCJA</code> → <b>Kod</b> kopiuje kod komputera — wyślij go autorowi, a otrzymasz plik licencji.</li>
+    <li><code>TCADLICENCJA</code> → <b>Wczytaj</b> — wskaż otrzymany plik <code>.lic</code>. Jedna licencja obejmuje 2 komputery.</li>
+    <li>Po zmianie komputera lub ponownej instalacji Windows: <code>TCADLICENCJA</code> → <b>Przeniesienie</b> przygotuje gotową prośbę.</li>
+  </ul>
+
+  <h2>Aktualizacje</h2>
+  <p>Przy pierwszym uruchomieniu GstarCAD w danym dniu program sprawdza, czy jest nowa wersja, i pyta o zgodę na instalację.
+    Nowa wersja działa po ponownym uruchomieniu GstarCAD. Ręcznie: polecenie <code>TCADAKTUALIZUJ</code>.</p>
+
+  <h2>Dziennik (dla testujących)</h2>
+  <p>Polecenie <code>TCADLOGI</code> → <b>Folder</b> — wskaż folder Dysku Google / OneDrive udostępniony autorowi. Program będzie tam
+    kopiował swój dziennik (bez rysunków). <b>Wylacz</b> zatrzymuje kopiowanie.</p>
+
+  <h2>Prywatność</h2>
+  <p>Program nie wysyła danych o użytkowniku. Raz w miesiącu pobiera z tej strony listę odwołanych licencji, a raz dziennie opis
+    najnowszej wersji. Mapy pobiera z usług wskazanych w ustawieniach (np. Geoportal).</p>
+
+  <footer>Pliki: <a href="https://github.com/Loganiusz/telekomcad-wydania/releases">wszystkie wydania</a></footer>
+</main>
+<script>
+  (function () {
+    function decode(b64) {
+      var bin = atob(b64), bytes = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return JSON.parse(new TextDecoder('utf-8').decode(bytes));
+    }
+    fetch('aktualizacja.json', { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (env) {
+        var m = decode(env.payload);
+        document.getElementById('wersja').textContent = 'TelekomCAD ' + m.version;
+        if (m.publishedAt) document.getElementById('data').textContent = 'opublikowano ' + new Date(m.publishedAt).toLocaleDateString('pl-PL');
+        if (m.notes) { var n = document.getElementById('zmiany'); n.textContent = m.notes; n.hidden = false; }
+        if (m.setupUrl && /^https:\/\/github\.com\//.test(m.setupUrl)) document.getElementById('instalator').href = m.setupUrl;
+      })
+      .catch(function () { document.getElementById('wersja').textContent = 'Pierwsza wersja wkrótce'; });
+  })();
+</script>
+</body>
+</html>
